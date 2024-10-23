@@ -2,7 +2,6 @@
 require('dotenv').config();
 const express = require('express');
 const myDB = require('./connection');
-const fccTesting = require('./freeCodeCamp/fcctesting.js');
 
 const app = express();
 
