@@ -16,7 +16,7 @@
     "express": "^4.21.1",
     "express-session": "~1.17.1",
     "helmet": "^8.0.0",
-    "mongodb": "^3.7.4",
+    "mongodb": "~3.6.0",
     "mongoose": "^8.7.2",
     "node": "^22.10.0",
     "passport": "^0.4.1",

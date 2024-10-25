@@ -7,6 +7,7 @@ const fccTesting = require('./freeCodeCamp/fcctesting.js');
 const configurepassport = require('./passport-config');
 const passport = require('passport');
 const session = require('express-session');
+const { ObjectId } = require('mongodb');
 
 const app = express();
 
@@ -27,6 +28,16 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+passport.serializeUser((user, done) => {
+  done(null, user._id);
+});
+
+passport.deserializeUser((id, done) => {
+  myDataBase.findOne({ _id: new ObjectId(id) }, (err, doc) => {
+    done(null, null);
+  });
+});
 
 // Set view engine and views directory
 app.set('view engine', 'pug');
