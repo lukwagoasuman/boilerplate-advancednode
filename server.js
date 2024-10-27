@@ -16,14 +16,11 @@ app.use('/public', express.static(process.cwd() + '/public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-configurepassport(passport);
-
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: true,
   saveUnitialized: true,
   cookie: { secure: false }
-
 }));
 
 app.use(passport.initialize());
@@ -43,9 +40,6 @@ passport.deserializeUser((id, done) => {
 app.set('view engine', 'pug');
 app.set('views', './views/pug');
 
-// Route to render the 'index.pug' view on the root path
-app.route('/').get((req, res) => {
-  res.render('index', { title: 'hello', message: 'please log in'}); // Ensure you have 'index.pug' in your views directory
 });
 
 const PORT = process.env.PORT || 8080;
