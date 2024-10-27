@@ -1,6 +1,6 @@
 // Do not change this file
 require('dotenv').config();
-import { MongoClient } from 'mongodb';
+const { MongoClient } = require('mongodb');
 
 async function main(callback) {
     const URI = process.env.MONGO_URI; // Declare MONGO_URI in your .env file
