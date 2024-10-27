@@ -55,7 +55,7 @@ myDB(async (client) => {
   });
 });
 
-let New = new LocalStrategy((username, password, done) => {
+let New = new LocalStrategy((username, password, done) => { //Needs Revision ...
   console.log(`Attempting login for username: ${username}`);
   
   myDB.collection('users').findOne({ username: username }, (err, user) => {
