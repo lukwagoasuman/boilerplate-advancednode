@@ -76,7 +76,7 @@ myDB(async (client) => {
   });
 
   app.get('/profile', ensureAuthenticated, (req, res) => {
-    res.render('profile', { username: req.user.username });
+    res.render('profile',);
   });
 
 }).catch(e => {
