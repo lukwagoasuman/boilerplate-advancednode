@@ -55,16 +55,6 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-// Database Connection and Routes
-myDB(async (client) => {
-  const myDataBase = await client.db('database').collection('users');
-
-  // Helper function to check authentication
-  const ensureAuthenticated = (req, res, next) => {
-    if (req.isAuthenticated()) return next();
-    res.redirect('/');
-  };
-
   // Routes
   app.get('/', (req, res) => {
     res.render('index', { title: 'Connected to Database', message: 'Please log in', showLogin: true });
