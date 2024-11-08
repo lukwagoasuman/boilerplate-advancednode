@@ -1,14 +1,17 @@
 'use strict';
 
 require('dotenv').config();
+
 const express = require('express');
 const passport = require('passport');
 const session = require('express-session');
-const bcrypt = require('bcrypt');
+
 const { ObjectID } = require('mongodb');
 const LocalStrategy = require('passport-local').Strategy;
 const myDB = require('./connection');
 const fccTesting = require('./freeCodeCamp/fcctesting.js');
+const routes = require('./routes.js');
+const auth = require('./auth.js');
 
 const app = express();
 
@@ -34,9 +37,16 @@ fccTesting(app);
 myDB(async (client) => {
   const myDataBase = await client.db('database').collection('users');
 
+  auth(app, myDataBase);
+  routes(app, myDataBase);
+
  
 // Server Setup
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log('Listening on port ' + PORT);
+ 
+ });
+
+
 });
